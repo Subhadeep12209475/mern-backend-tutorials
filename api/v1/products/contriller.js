@@ -60,9 +60,26 @@ const getAllProductController = async(req,res)=>{
 
 const updateProductController=async(req,res)=>{
   try{
-    const {productId}=
+    const {productId}=req.params;
+    const newProduct=await Product.findByIdAndUpdate(productId,newData);
+    res.status(200).json({
+      isSuccess:"true",
+      message:"Product updated",
+      data:{
+        product:newProduct,
+      }
+    })
+
+    }catch(err){
+        console.log("Error is updatedcontroller-->",err.message);
+        res.status(501).json({
+          isSuccess:"false",
+      message:"internal server error",
+      data:{}
+        })
+    }
   }
-}
+
 
 module.exports={createProductController,getAllProductController,updateProductController};
 
