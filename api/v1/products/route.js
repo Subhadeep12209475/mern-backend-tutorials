@@ -1,5 +1,5 @@
 const express = require("express")
-const {createProductController} = require("./contriller.js")
+const {createProductController, getAllProductController} = require("./contriller.js")
 const productRouter=express.Router();
 
 productRouter.get("/",(req,res)=>{
@@ -9,6 +9,8 @@ productRouter.get("/",(req,res)=>{
     data :{},
   })
 });
+productRouter.get("/",getAllProductController);
 productRouter.post("/",createProductController);
+productRouter.patch("/productId",updateProductController);
 
 module.exports={productRouter};

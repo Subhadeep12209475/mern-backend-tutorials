@@ -58,7 +58,13 @@ const getAllProductController = async(req,res)=>{
   }
 }
 
-module.exports={createProductController};
+const updateProductController=async(req,res)=>{
+  try{
+    const {productId}=
+  }
+}
+
+module.exports={createProductController,getAllProductController,updateProductController};
 
 
 // const {Product}= require("../../../models/product_schema.js")
