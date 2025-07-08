@@ -30,7 +30,7 @@ const createProductController = async(req,res)=>{
   }
   catch(err){
     console.log("Error in createProductController");
-    res.status(501).json({
+    res.status(500).json({
       isSuccess:false,
       message: "internal Server error",
       data:{}
@@ -51,7 +51,7 @@ const getAllProductController = async(req,res)=>{
     })
   }catch(err){
     console.log("error in getAllProduct-->",err.message);
-    res.status(501).json({
+    res.status(500).json({
       isSuccess:false,
       message:"Inernal error"
     })
@@ -61,6 +61,7 @@ const getAllProductController = async(req,res)=>{
 const updateProductController=async(req,res)=>{
   try{
     const {productId}=req.params;
+    const newData=req.body;
     const newProduct=await Product.findByIdAndUpdate(productId,newData);
     res.status(200).json({
       isSuccess:"true",
@@ -72,7 +73,7 @@ const updateProductController=async(req,res)=>{
 
     }catch(err){
         console.log("Error is updatedcontroller-->",err.message);
-        res.status(501).json({
+        res.status(500).json({
           isSuccess:"false",
       message:"internal server error",
       data:{}
