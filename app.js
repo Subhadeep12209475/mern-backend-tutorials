@@ -38,6 +38,7 @@
 const dotEnv = require("dotenv");
 dotEnv.config();
 const express=require("express")
+require("./config/db.js");
 const {apiRouter}=require("./api/v1/route.js");
 const app = express();
 app.use(express.json());
