@@ -1,3 +1,4 @@
+const {Product}= require("../../../models/product_schema.js")
 const createProductController = async(req,res)=>{
   try{
     const data= req.body;
@@ -9,6 +10,7 @@ const createProductController = async(req,res)=>{
       product = await Product.create(data);
     }catch(err){
       console.log("Error while creating product");
+      console.log(`Err ${err.message}`);
       res.status(400);  // Status code and http
       res.json({
         isSuccess:false,
@@ -22,7 +24,7 @@ const createProductController = async(req,res)=>{
       isSuccess:true,
       message:`product created`,
       data:{
-        product:newProduct,
+        product:product,
       }
     })
   }
@@ -36,6 +38,25 @@ const createProductController = async(req,res)=>{
 
   }
 };
+
+const getAllProductController = async(req,res)=>{
+  try{
+    const allProduct= await Product.find();
+    res.status(200).json({
+      isSuccess :true,
+      message:"product list fetched",
+      data:{
+        Product:allProduct,
+      }
+    })
+  }catch(err){
+    console.log("error in getAllProduct-->",err.message);
+    res.status(501).json({
+      isSuccess:false,
+      message:"Inernal error"
+    })
+  }
+}
 
 module.exports={createProductController};
 

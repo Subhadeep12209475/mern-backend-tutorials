@@ -34,5 +34,5 @@ const productSchema= new Schema(
   }
 );
 
-const product=model("product",productSchema);
-module.exports={product};
+const Product=model("product",productSchema);
+module.exports={Product};
